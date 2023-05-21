@@ -1,19 +1,20 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {createSlice} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {AppThunk, RootState} from 'redux/Store/Store';
+// import axios from 'axios';
+import {type RootState} from 'redux/Store/Store';
 import {types} from 'redux/Types/Types';
-import {initialStateMyShopping} from 'redux/Constant/InitialState';
+import {iniStateMyShopping} from 'redux/Constant/InitialState';
 
-//Reducers
+// Reducers
 export const myShoppingSlice = createSlice({
   name: types.myShoppingType,
   initialState: {
-    ...initialStateMyShopping
+    ...iniStateMyShopping
   },
   reducers: {}
 });
 
-//State-Reducer
+// State-Reducer
 export const selectMyShopping = (state: RootState) => state.myShopping;
-//Expo. Reducer
+// Expo. Reducer
 export default myShoppingSlice.reducer;

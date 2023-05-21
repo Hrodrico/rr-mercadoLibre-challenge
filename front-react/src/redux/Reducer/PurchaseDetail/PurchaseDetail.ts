@@ -1,19 +1,20 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {createSlice} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {AppThunk, RootState} from 'redux/Store/Store';
+// import axios from 'axios';
+import {type RootState} from 'redux/Store/Store';
 import {types} from 'redux/Types/Types';
-import {initialStatePurchaseDetail} from 'redux/Constant/InitialState';
+import {iniStatePurchaseDetail} from 'redux/Constant/InitialState';
 
-//Reducers
+// Reducers
 export const purchaseDetailSlice = createSlice({
   name: types.purchDetailType,
   initialState: {
-    ...initialStatePurchaseDetail
+    ...iniStatePurchaseDetail
   },
   reducers: {}
 });
 
-//State-Reducer
+// State-Reducer
 export const selectPurchaseDetail = (state: RootState) => state.purchaseDetail;
-//Expo. Reducer
+// Expo. Reducer
 export default purchaseDetailSlice.reducer;

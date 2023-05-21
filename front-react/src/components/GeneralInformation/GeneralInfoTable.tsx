@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Avatar, Box, Container, Grid, TextField, Typography} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {initialStateGralInfoResponse} from 'redux/Constant/InitialState';
+import {iniStateGralInfoResponse} from 'redux/Constant/InitialState';
 import {type IUser} from 'interface/Interface';
 // import {useAppSelector} from 'hooks/Hooks';
 // import {selectAuth} from 'redux/Reducer/Authentication/AuthSlice';
@@ -11,7 +11,7 @@ import styles from './GeneralInfo.module.css';
 
 const GeneralInfoTable = (): JSX.Element => {
   //   const {connected: USER} = useAppSelector(selectAuth);
-  const [user, setUser] = useState<IUser>(initialStateGralInfoResponse);
+  const [user, setUser] = useState<IUser>(iniStateGralInfoResponse);
 
   useEffect(() => {
     const userState: IUser = {
@@ -29,13 +29,15 @@ const GeneralInfoTable = (): JSX.Element => {
         <Box className={styles.container}>
           <Box className={styles.containetTable}>
             <Box className={styles.paper}>
-              <Avatar className={styles.avatar} src={user.image}>
-                <AccountCircleIcon sx={{fontSize: 100}} />
-              </Avatar>
               <Typography className={styles.title} component="h1" variant="h6">
                 Información general
               </Typography>
               <Grid container spacing={3}>
+                <Grid item xs={12} md={1}>
+                  <Avatar className={styles.avatar} src={user.image}>
+                    <AccountCircleIcon sx={{fontSize: 110}} />
+                  </Avatar>
+                </Grid>
                 <Grid item xs={12} md={7}>
                   <TextField
                     disabled={true}
@@ -46,7 +48,7 @@ const GeneralInfoTable = (): JSX.Element => {
                     value={user.fullname}
                   />
                 </Grid>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={12} md={4}>
                   <TextField
                     disabled={true}
                     name="level"

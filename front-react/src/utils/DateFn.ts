@@ -7,6 +7,6 @@ export function transDateToDDMMYYYYY(dateSelected: any): string {
   if (typeof dateSelected === 'object' || dateSelected instanceof Date) {
     newDate = new Date(dateSelected);
   }
-  const result: string = format(newDate, 'dd-MM-yyyy'); // ex. 11.2023
+  const result: string = format(newDate, 'dd-MM-yyyy'); // ex. 12-12-2023
   return result;
 }

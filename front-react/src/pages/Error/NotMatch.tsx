@@ -9,7 +9,7 @@ const NotMatch = (): JSX.Element => {
       <Container maxWidth="lg">
         <Box className={styles.container}>
           <Box className={styles.containerTable}>
-            <Typography variant="h6" component="h2" color="primary">
+            <Typography variant="h6" component="h2" color="inherit" align="center">
               Lo sentimos, la página que solicitó no se pudo encontrar! ⛔️
             </Typography>
           </Box>

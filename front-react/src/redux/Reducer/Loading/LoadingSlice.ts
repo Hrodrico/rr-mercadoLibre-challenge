@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import {createSlice} from '@reduxjs/toolkit';
-import {RootState} from 'redux/Store/Store';
+import {type RootState} from 'redux/Store/Store';
 import {types} from 'redux/Types/Types';
-import {initialStateLoading} from 'redux/Constant/InitialState';
+import {iniStateLoading} from 'redux/Constant/InitialState';
 
 export const loadingSlice = createSlice({
   name: types.loadType,
-  initialState: {...initialStateLoading},
+  initialState: {...iniStateLoading},
   reducers: {
-    toggleLoading: (state: any = initialStateLoading) => {
+    toggleLoading: (state: any = iniStateLoading) => {
       state.isLoading = !state.isLoading;
     }
   }

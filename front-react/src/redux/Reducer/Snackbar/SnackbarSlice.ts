@@ -1,14 +1,15 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {initialStateSnack} from 'redux/Constant/InitialState';
-import {RootState} from 'redux/Store/Store';
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
+import {type RootState} from 'redux/Store/Store';
 import {types} from 'redux/Types/Types';
-import {ISnackbar} from 'interface/Interface'; //Interfaces
+import {type ISnackbar} from 'interface/Interface'; // Interfaces
+import {iniStateSnack} from 'redux/Constant/InitialState';
 
 export const snackbarSlice = createSlice({
   name: types.snackbarType,
-  initialState: {...initialStateSnack},
+  initialState: {...iniStateSnack},
   reducers: {
-    openSnackbar: (state: any = initialStateSnack, action: PayloadAction<ISnackbar>) => {
+    openSnackbar: (state: any = iniStateSnack, action: PayloadAction<ISnackbar>) => {
       state.dataSnackbar = action.payload;
     }
   }

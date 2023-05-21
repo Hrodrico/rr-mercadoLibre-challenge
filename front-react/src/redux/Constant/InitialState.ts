@@ -1,16 +1,24 @@
 import {type AlertColor, type SnackbarOrigin} from '@mui/material';
-import {type IUser, type ILoading, type ISnackbar, type IStateSnackbar} from 'interface/Interface';
+import {
+  type IUser,
+  type ILoading,
+  type ISnackbar,
+  type IStateSnackbar,
+  type IPurchaseDetail,
+  type IPurchaseCost,
+  type IPurchaseSeller
+} from 'interface/Interface';
 
 const severityColor: AlertColor = 'warning';
 const SnackbarOriginProp: SnackbarOrigin = {vertical: 'bottom', horizontal: 'right'};
 
 /* Loading/Cargando */
-export const initialStateLoading: ILoading = {
+export const iniStateLoading: ILoading = {
   isLoading: false
 };
 
 /* Snackbar */
-export const initialStateSetSnackbar: ISnackbar = {
+export const iniStateSetSnackbar: ISnackbar = {
   isOpen: false,
   message: '',
   severity: severityColor,
@@ -18,29 +26,52 @@ export const initialStateSetSnackbar: ISnackbar = {
   anchorOrigin: SnackbarOriginProp
 };
 
-export const initialStateSnack: IStateSnackbar = {
-  dataSnackbar: {...initialStateSetSnackbar}
+export const iniStateSnack: IStateSnackbar = {
+  dataSnackbar: {...iniStateSetSnackbar}
 };
 
 /* General Information */
-export const initialStateGralInfo: any = {
+export const iniStateGralInfo: any = {
   list: []
 };
 
 /* My Shopping */
-export const initialStateMyShopping: any = {
+export const iniStateMyShopping: any = {
   list: []
 };
 
 /* My Shopping */
-export const initialStatePurchaseDetail: any = {
+export const iniStatePurchaseDetail: any = {
   list: []
 };
 
 /* Users/Usuario */
-export const initialStateGralInfoResponse: IUser = {
+export const iniStateGralInfoResponse: IUser = {
   image: '',
   fullname: '',
   level: '',
   restriccion: ''
+};
+
+/* components/PurchaseDetail */
+export const iniStatePurchaseCost: IPurchaseCost = {
+  total: '',
+  currency: ''
+};
+
+export const iniStatePurchaseSeller: IPurchaseSeller = {
+  id: 0,
+  nickname: ''
+};
+
+export const iniStatePurchaseDetailResponse: IPurchaseDetail = {
+  purchase_id: 0,
+  title: '',
+  cost: iniStatePurchaseCost,
+  amount: 0,
+  date: '',
+  image: '',
+  seller: iniStatePurchaseSeller,
+  transaction_status: '',
+  shipment_status: ''
 };

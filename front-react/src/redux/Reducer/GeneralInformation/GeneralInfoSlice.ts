@@ -1,19 +1,20 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {createSlice} from '@reduxjs/toolkit';
-import axios from 'axios';
-import {AppThunk, RootState} from 'redux/Store/Store';
+// import axios from 'axios';
+import {type RootState} from 'redux/Store/Store';
 import {types} from 'redux/Types/Types';
-import {initialStateGralInfo} from 'redux/Constant/InitialState';
+import {iniStateGralInfo} from 'redux/Constant/InitialState';
 
-//Reducers
+// Reducers
 export const generalInfoSlice = createSlice({
   name: types.gralInfoType,
   initialState: {
-    ...initialStateGralInfo
+    ...iniStateGralInfo
   },
   reducers: {}
 });
 
-//State-Reducer
+// State-Reducer
 export const selectGeneralInfo = (state: RootState) => state.generalInformation;
-//Expo. Reducer
+// Expo. Reducer
 export default generalInfoSlice.reducer;
