@@ -3,7 +3,7 @@ import {Backdrop, CircularProgress, Stack} from '@mui/material';
 import {useAppSelector} from 'hooks/Hooks';
 import {selectLoading} from 'redux/Reducer/Loading/LoadingSlice';
 
-function BackdropSimple({open = true}) {
+function BackdropSimple(): JSX.Element {
   const isLoad = useAppSelector(selectLoading);
   return (
     <Stack spacing={2} direction="row">

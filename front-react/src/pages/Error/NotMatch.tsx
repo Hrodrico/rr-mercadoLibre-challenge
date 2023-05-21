@@ -1,11 +1,10 @@
-//Material
+import React from 'react';
 import {Box, CssBaseline, Container, Typography} from '@mui/material';
-//Components
 import styles from './NotMatch.module.css';
 
-const NotMatch = () => {
+const NotMatch = (): JSX.Element => {
   return (
-    <>
+    <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
         <Box className={styles.container}>
@@ -16,7 +15,7 @@ const NotMatch = () => {
           </Box>
         </Box>
       </Container>
-    </>
+    </React.Fragment>
   );
 };
 

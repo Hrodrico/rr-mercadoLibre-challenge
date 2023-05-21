@@ -1,4 +1,4 @@
-//Paramter contants for app
+/* Paramter contants for app */
 const Constant = {
   drawerWidth: 270
 };

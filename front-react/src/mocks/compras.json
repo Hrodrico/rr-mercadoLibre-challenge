@@ -49,5 +49,57 @@
         },
         "transaction_id": 7010198,
         "shipment_id": 1000010198
+      },
+      {
+        "purchase_id": 300198,
+        "title": "Celular Xiaomi Mi A1 Rojo Dual Sim 64 Gb 4 Gb Ram + Liberado",
+        "cost": {
+          "total": 45998.00,
+          "currency": "ARS"
+        },
+        "amount": 2,
+        "date": "2022-07-20T08:10:27.000-03:00",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_774489-MLA49425273867_032022-V.webp",
+        "seller": {
+          "id": 4008,
+          "nickname": "ABC_MAC"
+        },
+        "transaction_id": 7010198,
+        "shipment_id": 1000010198
+      },
+      {
+        "purchase_id": 300198,
+        "title": "Celular Xiaomi Mi A1 Rojo Dual Sim 64 Gb 4 Gb Ram + Liberado",
+        "cost": {
+          "total": 45998.00,
+          "currency": "ARS"
+        },
+        "amount": 2,
+        "date": "2022-07-20T08:10:27.000-03:00",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_774489-MLA49425273867_032022-V.webp",
+        "seller": {
+          "id": 4008,
+          "nickname": "ABC_MAC"
+        },
+        "transaction_id": 7010198,
+        "shipment_id": 1000010198
+      },
+      {
+        "purchase_id": 300198,
+        "title": "Celular Xiaomi Mi A1 Rojo Dual Sim 64 Gb 4 Gb Ram + Liberado",
+        "cost": {
+          "total": 45998.00,
+          "currency": "ARS"
+        },
+        "amount": 2,
+        "date": "2022-07-20T08:10:27.000-03:00",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_774489-MLA49425273867_032022-V.webp",
+        "seller": {
+          "id": 4008,
+          "nickname": "ABC_MAC"
+        },
+        "transaction_id": 7010198,
+        "shipment_id": 1000010198
       }
+
 ]

@@ -1,6 +1,6 @@
-import {MouseEvent, Dispatch, ReactNode, SetStateAction} from 'react';
-import {SweetAlertPosition, SweetAlertIcon} from 'sweetalert2';
-import {AlertColor, SnackbarOrigin} from '@mui/material';
+import {type MouseEvent} from 'react';
+import {type SweetAlertPosition, type SweetAlertIcon} from 'sweetalert2';
+import {type AlertColor, type SnackbarOrigin} from '@mui/material';
 
 /* redux/Reducer/Loading/LoadingSlice */
 export interface ILoading {
@@ -90,4 +90,27 @@ export interface INavAvatar {
 /* guards */
 export interface IGuardProps {
   children?: any | undefined | null;
+}
+
+/* redux/Reducer/User */
+export interface IUser {
+  image?: string | undefined;
+  fullname: string;
+  level: string;
+  restriccion?: string;
+}
+
+/* components/MyShopping */
+export interface ITablePaginationActionsProps {
+  count: number;
+  page: number;
+  rowsPerPage: number;
+  onPageChange: (event: MouseEvent<HTMLButtonElement>, newPage: number) => void;
+}
+
+/* TablePagination */
+export interface ILabelDisplayedRows {
+  from: number;
+  to: number;
+  count: number;
 }

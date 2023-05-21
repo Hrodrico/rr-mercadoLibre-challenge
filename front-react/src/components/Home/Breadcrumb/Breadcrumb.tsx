@@ -2,19 +2,15 @@ import React from 'react';
 import {emphasize, styled} from '@mui/material/styles';
 import {Breadcrumbs, Chip} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
-//Mui-Icon
-import {IconCustom} from 'utils/IconSVG';
-//Uils
-import {getPathNameStorage} from 'utils/LocalStorage';
-//Path Config
-import {PathConfig} from 'config';
-//Mocks
-import dataBreadcrumb from 'mocks/breadcrumb.json';
+import {IconCustom} from 'utils/IconSVG'; // Mui-Icon
+import {getPathNameStorage} from 'utils/LocalStorage'; // Uils
+import {PathConfig} from 'config'; // Path Config
+import dataBreadcrumb from 'mocks/breadcrumb.json'; // Mocks
 
-function CustomizedBreadcrumbs() {
+function CustomizedBreadcrumbs(): JSX.Element {
   const navigate = useNavigate();
   const storagePathName: string | null = getPathNameStorage();
-  const homePath = PathConfig['patHome'];
+  const homePath = PathConfig.patHome;
 
   const StyledBreadcrumb = styled(Chip)(({theme}) => {
     const backgroundColor = theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[800];
@@ -33,7 +29,7 @@ function CustomizedBreadcrumbs() {
     };
   }) as typeof Chip;
 
-  function handleClicHome(event: React.MouseEvent<Element, MouseEvent>) {
+  function handleClicHome(event: React.MouseEvent<Element, MouseEvent>): void {
     event.preventDefault();
     navigate('/');
   }
@@ -60,7 +56,7 @@ function CustomizedBreadcrumbs() {
   return (
     <>
       {storagePathName !== homePath &&
-        dataBreadcrumb &&
+        dataBreadcrumb.length > 0 &&
         dataBreadcrumb.map((elem: any, idx: number) =>
           elem.breadcrumbSub.length === 0
             ? elem.navigate === storagePathName && crumLevelOne(dataBreadcrumb, elem, idx)

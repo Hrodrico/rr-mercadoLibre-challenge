@@ -1,9 +1,9 @@
 import React from 'react';
-import {ListItem, ListItemIcon, ListItemText, Tooltip, TooltipProps, tooltipClasses, Fade} from '@mui/material';
+import {ListItem, ListItemIcon, ListItemText, Tooltip, type TooltipProps, tooltipClasses, Fade} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 import {styled} from '@mui/material/styles';
 import {IconCustom} from 'utils/IconSVG';
-import {IDrawerItem} from 'interface/Interface';
+import {type IDrawerItemDetail, type IDrawerItem} from 'interface/Interface';
 
 const BlackTooltip = styled(({className, ...props}: TooltipProps) => (
   <Tooltip
@@ -24,10 +24,12 @@ const BlackTooltip = styled(({className, ...props}: TooltipProps) => (
   }
 }));
 
-function Item({props, open}: IDrawerItem) {
+function Item({props, open}: IDrawerItem): JSX.Element {
   const navigate = useNavigate();
-  const {id, name, toolTipText, icon, path} = props;
-  const onClick = () => navigate(path);
+  const {id, name, toolTipText, icon, path}: IDrawerItemDetail = props;
+  const onClick = (): void => {
+    navigate(path);
+  };
 
   return (
     <>
@@ -35,7 +37,7 @@ function Item({props, open}: IDrawerItem) {
         <React.Fragment>
           <BlackTooltip title={toolTipText}>
             <ListItem key={id} onClick={onClick}>
-              {icon && <ListItemIcon> {IconCustom(icon)} </ListItemIcon>}
+              {icon.length > 0 && <ListItemIcon> {IconCustom(icon)} </ListItemIcon>}
               <ListItemText primary={name} />
             </ListItem>
           </BlackTooltip>
@@ -43,7 +45,7 @@ function Item({props, open}: IDrawerItem) {
       ) : (
         <React.Fragment>
           <ListItem key={id} onClick={onClick}>
-            {icon && <ListItemIcon> {IconCustom(icon)} </ListItemIcon>}
+            {icon.length > 0 && <ListItemIcon> {IconCustom(icon)} </ListItemIcon>}
             <ListItemText primary={name} />
           </ListItem>
         </React.Fragment>

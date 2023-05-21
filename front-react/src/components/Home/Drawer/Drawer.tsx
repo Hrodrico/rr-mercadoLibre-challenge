@@ -1,22 +1,22 @@
 import React from 'react';
-import {styled, useTheme, Theme, CSSObject} from '@mui/material/styles';
+import {styled, useTheme, type Theme, type CSSObject} from '@mui/material/styles';
 import {Drawer as MuiDrawer, Box, List, Divider, IconButton} from '@mui/material';
-//components
+// components
 
 import ItemCollapse from 'components/Home/Drawer/ItemCollapse';
 import Item from 'components/Home/Drawer/Item';
 import Breadcrumb from 'components/Home/Breadcrumb';
-//Interface
-import {IMiniDrawer} from 'interface/Interface';
-//Icon MUI
+// Interface
+import {type IMiniDrawer} from 'interface/Interface';
+// Icon MUI
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-//Constants
+// Constants
 import Constant from 'config/Constant';
-//Mocks
+// Mocks
 import dataDrawer from 'mocks/drawer.json';
 
-function MiniDrawer({open, component, handleDrawerClose}: IMiniDrawer) {
+function MiniDrawer({open, component, handleDrawerClose}: IMiniDrawer): JSX.Element {
   const theme = useTheme();
 
   const Main = styled('main', {shouldForwardProp: (prop) => prop !== 'open'})<{
@@ -30,7 +30,7 @@ function MiniDrawer({open, component, handleDrawerClose}: IMiniDrawer) {
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: `-${Constant.drawerWidth}px`,
-    ...(open && {
+    ...((open ?? false) && {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
@@ -76,11 +76,11 @@ function MiniDrawer({open, component, handleDrawerClose}: IMiniDrawer) {
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
-    ...(open && {
+    ...((open ?? false) && {
       ...openedMixin(theme),
       '& .MuiDrawer-paper': openedMixin(theme)
     }),
-    ...(!open && {
+    ...(!(open ?? false) && {
       ...closedMixin(theme),
       '& .MuiDrawer-paper': closedMixin(theme)
     })
@@ -97,19 +97,17 @@ function MiniDrawer({open, component, handleDrawerClose}: IMiniDrawer) {
           </DrawerHeader>
           <Divider />
           <List>
-            {dataDrawer.menuUser &&
-              dataDrawer.menuUser.map((prop: any) => {
-                const {menuSub} = prop;
-                return <>{menuSub.length > 0 ? <ItemCollapse props={prop} open={open} /> : <Item props={prop} open={open} />}</>;
-              })}
+            {dataDrawer.menuUser?.map((prop: any) => {
+              const {menuSub} = prop;
+              return <>{menuSub.length > 0 ? <ItemCollapse props={prop} open={open} /> : <Item props={prop} open={open} />}</>;
+            })}
           </List>
           <Divider />
           <List>
-            {dataDrawer.menuConfig.length > 0 &&
-              dataDrawer.menuConfig.map((prop: any) => {
-                const {menuSub} = prop;
-                return <>{menuSub.length > 0 ? <ItemCollapse props={prop} open={open} /> : <Item props={prop} open={open} />}</>;
-              })}
+            {dataDrawer.menuConfig?.map((prop: any) => {
+              const {menuSub} = prop;
+              return <>{menuSub.length > 0 ? <ItemCollapse props={prop} open={open} /> : <Item props={prop} open={open} />}</>;
+            })}
           </List>
         </Drawer>
         <Main open={open}>

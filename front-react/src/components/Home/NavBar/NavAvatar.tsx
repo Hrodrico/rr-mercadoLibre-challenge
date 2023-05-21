@@ -1,10 +1,12 @@
-import {FC, MouseEvent, useState, useEffect} from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import {type FC, type MouseEvent, useState} from 'react';
 import {Avatar, Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText, Badge} from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import {Logout} from '@mui/icons-material';
 import {useNavigate} from 'react-router-dom';
 import {styled} from '@mui/material/styles';
-import {INavAvatar} from 'interface/Interface';
+import {type INavAvatar} from 'interface/Interface';
 import {PathConfig} from 'config';
 
 const NavAvatar: FC<INavAvatar> = ({userName}) => {
@@ -12,19 +14,17 @@ const NavAvatar: FC<INavAvatar> = ({userName}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
   const colorOnLive: string = '#44b700';
-  const colorOffLive: string = '#cc0c00';
-  const [colorLive, setColorLive] = useState<string>(colorOnLive);
-  const profilePath = PathConfig['patProfile'];
+  const profilePath = PathConfig.patProfile;
 
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>): void => {
     setAnchorEl(event.currentTarget);
   };
 
-  const goToProfile = () => {
+  const goToProfile = (): void => {
     navigate(profilePath);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setAnchorEl(null);
   };
 
@@ -40,8 +40,8 @@ const NavAvatar: FC<INavAvatar> = ({userName}) => {
 
   const StyledBadge = styled(Badge)(({theme}) => ({
     '& .MuiBadge-badge': {
-      backgroundColor: `${colorLive}`,
-      color: `${colorLive}`,
+      backgroundColor: `${colorOnLive}`,
+      color: `${colorOnLive}`,
       boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
       '&::after': {
         position: 'absolute',

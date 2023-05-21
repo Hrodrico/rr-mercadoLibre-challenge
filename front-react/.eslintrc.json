@@ -6,9 +6,9 @@
     "extends": [
         "plugin:react/recommended",
         "standard-with-typescript",
-        "plugin:jsx-a11y/recomended",
-        "plugin:react-hooks/recomended",
-        "plugin:prettier/recomended"
+        "plugin:jsx-a11y/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended"
     ],
     "overrides": [
     ],
