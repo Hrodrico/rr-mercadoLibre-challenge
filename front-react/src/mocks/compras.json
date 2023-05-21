@@ -1,0 +1,53 @@
+[
+    {
+        "purchase_id": 300200,
+        "title": "Celular LG K40",
+        "cost": {
+          "total": 105000.00,
+          "currency": "ARS"
+        },
+        "amount": 3,
+        "date": "2022-07-25T10:23:18.000-03:00",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_969645-MLA46877067884_072021-V.webp",
+        "seller": {
+          "id": 4010,
+          "nickname": "FAROCUDR19"
+        },
+        "transaction_id": 7010200,
+        "shipment_id": 1000010200
+      },
+      {
+        "purchase_id": 300199,
+        "title": "Apple iPhone 13 Pro Max 2565gb-incluye Cargador -1 Año Gtia.",
+        "cost": {
+          "total": 629999.99,
+          "currency": "ARS"
+        },
+        "amount": 1,
+        "date": "2022-07-25T10:03:18.000-03:00",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_753104-MLA47778455981_102021-V.webp",
+        "seller": {
+          "id": 4009,
+          "nickname": "ELECTROMIAMI123"
+        },
+        "transaction_id": 7010199,
+        "shipment_id": 1000010199
+      },
+      {
+        "purchase_id": 300198,
+        "title": "Celular Xiaomi Mi A1 Rojo Dual Sim 64 Gb 4 Gb Ram + Liberado",
+        "cost": {
+          "total": 45998.00,
+          "currency": "ARS"
+        },
+        "amount": 2,
+        "date": "2022-07-20T08:10:27.000-03:00",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_774489-MLA49425273867_032022-V.webp",
+        "seller": {
+          "id": 4008,
+          "nickname": "ABC_MAC"
+        },
+        "transaction_id": 7010198,
+        "shipment_id": 1000010198
+      }
+]
