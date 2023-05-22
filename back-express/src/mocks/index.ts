@@ -10,7 +10,8 @@ import userPurchasesJSON from "./usuarios/compras.json";
 
 // Level
 // import levelJSON from "./nivel"; //Error: El archivo 'back-express/src/mocks/nivel/index.ts' no es un módulo.ts(2306)
-import levelJSON from "./nivel/nivel.json";
+const levelJSON = require("./nivel");
+// import levelJSON from "./nivel/nivel.json";
 
 // Payments
 // import paymentsJSON from "./transacciones";//Error: El archivo 'back-express/src/mocks/transacciones/index.ts' no es un módulo.ts(2306)
@@ -40,8 +41,12 @@ export default class MockUtils {
           error.message = "Error: 404";
           throw error;
         }
+        console.log("_readJSON.timeout:::[", timeout, "]");
+        console.log("_readJSON.parameter:::[", parameter, "]");
+        console.log("_readJSON.jsonFile:::[", jsonFile, "]");
         setTimeout(() => {
-          resolve(parameter ? jsonFile[parameter] : jsonFile);
+          // resolve(parameter ? jsonFile[parameter] : jsonFile);
+          resolve(jsonFile);
         }, timeout);
       } catch (error) {
         reject(error);
@@ -50,6 +55,7 @@ export default class MockUtils {
   }
 
   getUser() {
+    console.log("MockUtils.getUser():::[", this._readJSON(userJSON), "]");
     return this._readJSON(userJSON);
   }
 

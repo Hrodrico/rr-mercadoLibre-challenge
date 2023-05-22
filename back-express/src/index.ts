@@ -1,5 +1,5 @@
 import express from "express";
-import userRouter from "./routes/user";
+import userRoute from "./routes/userRoute";
 
 const app = express();
 app.use(express.json());
@@ -10,7 +10,7 @@ app.get("/helpz", () => {
   console.log("::: Someone pinged Here!!! :::");
 });
 
-app.use("/api/user", userRouter);
+app.use("/api/user", userRoute);
 
 app.listen(PORT, () => {
   console.log(`::: Server running on port ${PORT}:::`);

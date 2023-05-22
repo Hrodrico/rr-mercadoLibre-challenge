@@ -17,6 +17,11 @@ export default class MercadolibreService {
   }
 
   getUser() {
+    console.log(
+      "MercadolibreService.getUser():::[",
+      this.mockUtils.getUser(),
+      "]"
+    );
     return this.mockUtils.getUser();
   }
 
