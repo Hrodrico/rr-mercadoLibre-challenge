@@ -8,7 +8,6 @@
 
 // const MockUtils = require("./mocks");
 import MockUtils from "../mocks";
-// import { IPurchaseDetail } from "./types";
 
 export default class MercadolibreService {
   mockUtils: MockUtils;
@@ -17,11 +16,6 @@ export default class MercadolibreService {
   }
 
   getUser() {
-    console.log(
-      "MercadolibreService.getUser():::[",
-      this.mockUtils.getUser(),
-      "]"
-    );
     return this.mockUtils.getUser();
   }
 
@@ -30,9 +24,6 @@ export default class MercadolibreService {
   }
 
   async getUserPurchases(userId: any, limit = 10, page = 1) {
-    // const purchases: IPurchaseDetail[] = await this.mockUtils.getUserPurchases(
-    //   userId
-    // );
     const purchases: any = await this.mockUtils.getUserPurchases(userId);
     const offset = (page - 1) * limit;
     if (page < 1 || offset >= purchases.length) {

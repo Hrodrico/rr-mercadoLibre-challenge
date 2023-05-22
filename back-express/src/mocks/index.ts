@@ -1,25 +1,18 @@
 // istanbul ignore file
 
 // User
-// import userJSON from "./usuarios"; /*Error: El archivo 'mocks/usuarios/index.ts' no es un módulo.ts(2306) */
-// import userRestrictionsJSON from "./usuarios/restricciones";
-// import userPurchasesJSON from "./usuarios/compras";
-import userJSON from "./usuarios/usuarios.json";
-import userRestrictionsJSON from "./usuarios/restricciones.json";
-import userPurchasesJSON from "./usuarios/compras.json";
+const userJSON = require("./usuarios");
+const userRestrictionsJSON = require("./usuarios/restricciones");
+const userPurchasesJSON = require("./usuarios/compras");
 
 // Level
-// import levelJSON from "./nivel"; //Error: El archivo 'back-express/src/mocks/nivel/index.ts' no es un módulo.ts(2306)
 const levelJSON = require("./nivel");
-// import levelJSON from "./nivel/nivel.json";
 
 // Payments
-// import paymentsJSON from "./transacciones";//Error: El archivo 'back-express/src/mocks/transacciones/index.ts' no es un módulo.ts(2306)
-import paymentsJSON from "./transacciones/transacciones.json";
+const paymentsJSON = require("./transacciones");
 
 // Shipments
-// import shipmentsJSON from "./envios";//Error: El archivo 'back-express/src/mocks/envios/index.ts' no es un módulo.ts(2306)
-import shipmentsJSON from "./envios/envios.json";
+const shipmentsJSON = require("./envios");
 
 export default class MockUtils {
   basePath: string;
@@ -41,12 +34,8 @@ export default class MockUtils {
           error.message = "Error: 404";
           throw error;
         }
-        console.log("_readJSON.timeout:::[", timeout, "]");
-        console.log("_readJSON.parameter:::[", parameter, "]");
-        console.log("_readJSON.jsonFile:::[", jsonFile, "]");
         setTimeout(() => {
-          // resolve(parameter ? jsonFile[parameter] : jsonFile);
-          resolve(jsonFile);
+          resolve(parameter ? jsonFile[parameter] : jsonFile);
         }, timeout);
       } catch (error) {
         reject(error);
@@ -55,7 +44,6 @@ export default class MockUtils {
   }
 
   getUser() {
-    console.log("MockUtils.getUser():::[", this._readJSON(userJSON), "]");
     return this._readJSON(userJSON);
   }
 
