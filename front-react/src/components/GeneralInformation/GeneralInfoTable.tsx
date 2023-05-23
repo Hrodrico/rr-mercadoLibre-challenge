@@ -1,28 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Avatar, Box, Container, Grid, TextField, Typography} from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {iniStateGralInfoResponse} from 'redux/Constant/InitialState';
-import {type IUser} from 'interface/Interface';
-// import {useAppSelector} from 'hooks/Hooks';
-// import {selectAuth} from 'redux/Reducer/Authentication/AuthSlice';
-import dataUser from 'mocks/usuarios.json';
-import restriccion from 'mocks/restricciones.json';
+import {type IComponentTable} from 'interface/Interface';
+// import dataUser from 'mocks/usuarios.json';
+// import restriccion from 'mocks/restricciones.json';
 import styles from './GeneralInfo.module.css';
 
-const GeneralInfoTable = (): JSX.Element => {
-  //   const {connected: USER} = useAppSelector(selectAuth);
-  const [user, setUser] = useState<IUser>(iniStateGralInfoResponse);
-
-  useEffect(() => {
-    const userState: IUser = {
-      image: dataUser.profile_image,
-      fullname: `${dataUser.name} ${dataUser.surname}`,
-      level: dataUser.level,
-      restriccion: restriccion.message
-    };
-    setUser(userState);
-  }, []);
-
+const GeneralInfoTable = ({elementUser}: IComponentTable): JSX.Element => {
   return (
     <>
       <Container maxWidth="sm">
@@ -34,40 +18,42 @@ const GeneralInfoTable = (): JSX.Element => {
               </Typography>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={1}>
-                  <Avatar className={styles.avatar} src={user.image}>
+                  <Avatar className={styles.avatar} src={elementUser.image}>
                     <AccountCircleIcon sx={{fontSize: 110}} />
                   </Avatar>
                 </Grid>
-                <Grid item xs={12} md={7}>
+                <Grid item xs={12} md={5}>
                   <TextField
                     disabled={true}
                     name="displayName"
                     variant="outlined"
                     fullWidth
                     label={'Nombre completo del usuario'}
-                    value={user.fullname}
+                    value={elementUser.fullname}
                   />
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={6}>
                   <TextField
                     disabled={true}
                     name="level"
-                    value={user.level}
+                    value={elementUser.level}
                     variant="outlined"
                     fullWidth
                     label={'Nivel de Mercado Puntos'}
                   />
                 </Grid>
-                <Grid item xs={12} md={12}>
-                  <TextField
-                    disabled={true}
-                    name="restriccion"
-                    value={user.restriccion}
-                    variant="outlined"
-                    fullWidth
-                    label={'Restricciones'}
-                  />
-                </Grid>
+                {elementUser.restMessage != null && (
+                  <Grid item xs={12} md={12}>
+                    <TextField
+                      disabled={true}
+                      name="restriccion"
+                      value={elementUser.restMessage}
+                      variant="outlined"
+                      fullWidth
+                      label={'Restricciones'}
+                    />
+                  </Grid>
+                )}
               </Grid>
             </Box>
           </Box>

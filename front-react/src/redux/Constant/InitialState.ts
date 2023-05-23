@@ -6,7 +6,9 @@ import {
   type IStateSnackbar,
   type IPurchaseDetail,
   type IPurchaseCost,
-  type IPurchaseSeller
+  type IPurchaseSeller,
+  type IPurchaseShipment,
+  type IPurchasePayment
 } from 'interface/Interface';
 
 const severityColor: AlertColor = 'warning';
@@ -17,7 +19,7 @@ export const iniStateLoading: ILoading = {
   isLoading: false
 };
 
-/* Snackbar */
+/* Snackbar/Mensaje */
 export const iniStateSetSnackbar: ISnackbar = {
   isOpen: false,
   message: '',
@@ -30,27 +32,27 @@ export const iniStateSnack: IStateSnackbar = {
   dataSnackbar: {...iniStateSetSnackbar}
 };
 
-/* General Information */
+/* General Information/Informacion General */
 export const iniStateGralInfo: any = {
-  list: []
+  dataUser: [],
+  dataRestriction: [],
+  dataLevel: []
 };
 
-/* My Shopping */
+/* My Shopping/ Mis compras */
 export const iniStateMyShopping: any = {
-  list: []
-};
-
-/* My Shopping */
-export const iniStatePurchaseDetail: any = {
-  list: []
+  dataPurchase: [],
+  dataShipment: [],
+  dataPayment: []
 };
 
 /* Users/Usuario */
 export const iniStateGralInfoResponse: IUser = {
+  idUser: 0,
   image: '',
   fullname: '',
   level: '',
-  restriccion: ''
+  restMessage: ''
 };
 
 /* components/PurchaseDetail */
@@ -72,6 +74,16 @@ export const iniStatePurchaseDetailResponse: IPurchaseDetail = {
   date: '',
   image: '',
   seller: iniStatePurchaseSeller,
-  transaction_status: '',
-  shipment_status: ''
+  transaction_id: 0,
+  shipment_id: 0
+};
+
+export const iniStatePurchaseShipment: IPurchaseShipment = {
+  shipment_id: 0,
+  status: ''
+};
+
+export const iniStatePurchasePayment: IPurchasePayment = {
+  transaction_id: 0,
+  status: ''
 };

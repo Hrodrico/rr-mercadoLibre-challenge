@@ -94,10 +94,16 @@ export interface IGuardProps {
 
 /* redux/Reducer/User */
 export interface IUser {
-  image?: string | undefined;
+  idUser?: number;
+  image?: string;
   fullname: string;
   level: string;
-  restriccion?: string;
+  restMessage?: string;
+  restType?: string;
+}
+
+export interface IComponentTable {
+  elementUser: IUser;
 }
 
 /* components/MyShopping */
@@ -134,10 +140,20 @@ export interface IPurchaseDetail {
   date: string;
   image: string;
   seller: IPurchaseSeller;
-  transaction_status: string;
-  shipment_status: string;
+  transaction_id: number;
+  shipment_id: number;
 }
 
 export interface IPurchaseDetailElement {
   element: IPurchaseDetail;
+}
+
+export interface IPurchaseShipment {
+  shipment_id: number;
+  status: string;
+}
+
+export interface IPurchasePayment {
+  transaction_id: number;
+  status: string;
 }

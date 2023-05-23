@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import {type FC, type MouseEvent, useState} from 'react';
-import {Avatar, Menu, MenuItem, Button, Divider, ListItemIcon, ListItemText, Badge} from '@mui/material';
+import {Divider, Avatar, Menu, MenuItem, Button, ListItemIcon, ListItemText, Badge} from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import {Logout} from '@mui/icons-material';
 import {useNavigate} from 'react-router-dom';
 import {styled} from '@mui/material/styles';
+import {Logout} from '@mui/icons-material';
 import {type INavAvatar} from 'interface/Interface';
 import {PathConfig} from 'config';
 
@@ -67,6 +69,10 @@ const NavAvatar: FC<INavAvatar> = ({userName}) => {
     }
   }));
 
+  const logoutButton = () => {
+    navigate('/');
+  };
+
   return (
     <div style={{marginLeft: 'auto'}}>
       <Button
@@ -100,6 +106,7 @@ const NavAvatar: FC<INavAvatar> = ({userName}) => {
         <Divider />
         <MenuItem
           onClick={() => {
+            logoutButton();
             handleClose();
           }}>
           <ListItemIcon>

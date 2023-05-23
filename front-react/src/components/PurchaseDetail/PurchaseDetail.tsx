@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Button, Modal, Box, Stack, Grid, TextField, Typography, IconButton, Tooltip, Avatar} from '@mui/material';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import CloseIcon from '@mui/icons-material/Close';
-import {type IPurchaseDetailElement} from 'interface/Interface';
+import {useAppDispatch, useAppSelector} from 'hooks/Hooks';
+import {getPayment, getShipment, selectMyShopping} from 'redux/Reducer/MyShopping/MyShoppingSlice';
+import {iniStatePurchaseShipment, iniStatePurchasePayment} from 'redux/Constant/InitialState';
+import {type IPurchasePayment, type IPurchaseShipment, type IPurchaseDetailElement} from 'interface/Interface';
 import {transDateToDDMMYYYYY} from 'utils/DateFn';
 import {formatNumberToMoney} from 'utils/FormatFn';
 
@@ -19,7 +22,28 @@ const style = {
 };
 
 const PurchaseDetail = ({element}: IPurchaseDetailElement): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const {dataShipment: SHIPMENT, dataPayment: PAYMENT} = useAppSelector(selectMyShopping);
   const [open, setOpen] = useState(false);
+  const [eleShipment, setEleShipment] = useState<IPurchaseShipment>(iniStatePurchaseShipment);
+  const [elePayment, setElePayment] = useState<IPurchasePayment>(iniStatePurchasePayment);
+
+  useEffect(() => {
+    if (element?.purchase_id > 0) {
+      const tranId: number = element.transaction_id;
+      const shipId: number = element.shipment_id;
+      dispatch(getPayment(tranId));
+      dispatch(getShipment(shipId));
+    }
+  }, [element]);
+
+  useEffect(() => {
+    setEleShipment(SHIPMENT);
+  }, [SHIPMENT]);
+
+  useEffect(() => {
+    setElePayment(PAYMENT);
+  }, [PAYMENT]);
 
   const handleOpen = (): void => {
     setOpen(true);
@@ -66,6 +90,22 @@ const PurchaseDetail = ({element}: IPurchaseDetailElement): JSX.Element => {
                 />
               </Grid>
 
+              <Grid item xs={6}>
+                <Avatar alt={element.title} src={element.image} sx={{m: 'auto', width: 110, height: 110}} />
+              </Grid>
+
+              <Grid item xs={6}>
+                <TextField
+                  id="outlined-basic"
+                  label="Precio"
+                  variant="outlined"
+                  fullWidth
+                  name="cost"
+                  value={formatNumberToMoney(element.cost.total, element.cost.currency)}
+                  disabled
+                />
+              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   id="outlined-basic"
@@ -79,7 +119,15 @@ const PurchaseDetail = ({element}: IPurchaseDetailElement): JSX.Element => {
               </Grid>
 
               <Grid item xs={6}>
-                <Avatar alt={element.title} src={element.image} sx={{m: 'auto', width: 110, height: 110}} />
+                <TextField
+                  id="outlined-basic"
+                  label="Cantidad"
+                  variant="outlined"
+                  fullWidth
+                  name="amount"
+                  value={element.amount}
+                  disabled
+                />
               </Grid>
 
               <Grid item xs={6}>
@@ -97,11 +145,11 @@ const PurchaseDetail = ({element}: IPurchaseDetailElement): JSX.Element => {
               <Grid item xs={6}>
                 <TextField
                   id="outlined-basic"
-                  label="Precio"
+                  label="Estado del pago"
                   variant="outlined"
                   fullWidth
-                  name="cost"
-                  value={formatNumberToMoney(element.cost.total, element.cost.currency)}
+                  name="transaction_status"
+                  value={elePayment.status}
                   disabled
                 />
               </Grid>
@@ -109,35 +157,11 @@ const PurchaseDetail = ({element}: IPurchaseDetailElement): JSX.Element => {
               <Grid item xs={6}>
                 <TextField
                   id="outlined-basic"
-                  label="Cantidad"
-                  variant="outlined"
-                  fullWidth
-                  name="amount"
-                  value={element.amount}
-                  disabled
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  id="outlined-basic"
-                  label="Estado del pago"
-                  variant="outlined"
-                  fullWidth
-                  name="transaction_status"
-                  value={element.transaction_status}
-                  disabled
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <TextField
-                  id="outlined-basic"
                   label="Estado del envío"
                   variant="outlined"
                   fullWidth
                   name="shipment_status"
-                  value={element.shipment_status}
+                  value={eleShipment.status}
                   disabled
                 />
               </Grid>

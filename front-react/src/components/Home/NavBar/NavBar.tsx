@@ -1,35 +1,33 @@
-import React from 'react';
-// import {useNavigate} from 'react-router-dom';
-import {
-  AppBar as MuiAppBar,
-  type AppBarProps as MuiAppBarProps,
-  Box,
-  Toolbar,
-  CssBaseline,
-  // Typography,
-  IconButton
-  // Avatar
-} from '@mui/material'; // Mui
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import React, {useEffect, useState} from 'react';
+import {AppBar as MuiAppBar, type AppBarProps as MuiAppBarProps, Box, Toolbar, CssBaseline, IconButton} from '@mui/material'; // Mui
 import {styled} from '@mui/material/styles';
-import NavAvatar from 'components/Home/NavBar/NavAvatar'; // Component
-import MenuIcon from '@mui/icons-material/Menu'; // Icon MUI
-// import {useAppSelector} from 'hooks/Hooks';
-// import {selectAuth} from 'redux/Reducer/Authentication/AuthSlice'; //Redux
-// import {PathConfig} from 'config'; // Path Config
-import Constant from 'config/Constant'; // Constants
+import NavAvatar from 'components/Home/NavBar/NavAvatar';
+import MenuIcon from '@mui/icons-material/Menu';
+import {useAppDispatch, useAppSelector} from 'hooks/Hooks';
+import {getUser, selectGeneralInfo} from 'redux/Reducer/GeneralInformation/GeneralInfoSlice';
+import Constant from 'config/Constant';
 import {type INavBar} from 'interface/Interface';
-import dataUser from 'mocks/usuarios.json';
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
 function NavBar({open, handleDrawerOpen}: INavBar): JSX.Element {
-  // const navigate = useNavigate();
-  // const homePath = PathConfig.patHome;
-  //   const {connected: dataUser} = useAppSelector(selectAuth);
-  // const fullName: string = dataUser ? `${dataUser.name}` : 'Unknown User';
-  const fullName: string = (dataUser?.name).length > 0 ? `${dataUser.name} ${dataUser.surname}` : 'Unknown User';
+  const dispatch = useAppDispatch();
+  const {dataUser: USER} = useAppSelector(selectGeneralInfo);
+  const [user, setUser] = useState('Unknown User');
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  useEffect(() => {
+    const fullName: string = USER?.name ? `${USER.name} ${USER.surname}` : 'Unknown User';
+    setUser(fullName);
+  }, [USER]);
 
   const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open'
@@ -50,7 +48,7 @@ function NavBar({open, handleDrawerOpen}: INavBar): JSX.Element {
   }));
 
   return (
-    <>
+    <React.Fragment>
       <Box sx={{display: 'flex'}}>
         <CssBaseline />
         <AppBar position="fixed" open={open}>
@@ -66,15 +64,12 @@ function NavBar({open, handleDrawerOpen}: INavBar): JSX.Element {
               }}>
               <MenuIcon />
             </IconButton>
-            {/* <IconButton color="secondary" aria-label="home" component="span">
-              <Avatar src={dataUser.profile_image} sx={{width: 110, height: 60}} />
-            </IconButton> */}
-            <NavAvatar userName={fullName} />
-            <p>{dataUser?.name}</p>
+            <NavAvatar userName={user} />
+            <p>{user}</p>
           </Toolbar>
         </AppBar>
       </Box>
-    </>
+    </React.Fragment>
   );
 }
 

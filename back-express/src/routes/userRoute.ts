@@ -1,8 +1,8 @@
 import express from "express";
 import mercadoLibreService from "../services/MercadolibreService";
+import { printDateNow } from "../utils/DateFn";
 
 const router = express.Router();
-
 const meliService = new mercadoLibreService();
 
 router.get("/help", (_req, res) => {
@@ -10,6 +10,8 @@ router.get("/help", (_req, res) => {
 });
 
 router.get("/", (_req, res) => {
+  printDateNow("getUser");
+
   meliService
     .getUser()
     .then((result) => res.status(200).send(result))
@@ -18,6 +20,8 @@ router.get("/", (_req, res) => {
 
 router.get("/restriction/:id", (req, res) => {
   const id = req.params.id;
+  printDateNow("getUserRestrictions.id[" + id + "]");
+
   meliService
     .getUserRestrictions(id)
     .then((result) => res.status(200).send(result))
@@ -26,6 +30,8 @@ router.get("/restriction/:id", (req, res) => {
 
 router.get("/purchases/:id", (req, res) => {
   const id = req.params.id;
+  printDateNow("getUserPurchases.id[" + id + "]");
+
   meliService
     .getUserPurchases(id)
     .then((result) => res.status(200).send(result))
@@ -34,6 +40,8 @@ router.get("/purchases/:id", (req, res) => {
 
 router.get("/level/:id", (req, res) => {
   const id = req.params.id;
+  printDateNow("getLevel.id[" + id + "]");
+
   meliService
     .getLevel(id)
     .then((result) => res.status(200).send(result))
@@ -42,6 +50,8 @@ router.get("/level/:id", (req, res) => {
 
 router.get("/shipment/:id", (req, res) => {
   const id = req.params.id;
+  printDateNow("getShipment.id[" + id + "]");
+
   meliService
     .getShipment(id)
     .then((result) => res.status(200).send(result))
@@ -50,6 +60,8 @@ router.get("/shipment/:id", (req, res) => {
 
 router.get("/payment/:id", (req, res) => {
   const id = req.params.id;
+  printDateNow("getPayment.id[" + id + "]");
+
   meliService
     .getPayment(id)
     .then((result) => res.status(200).send(result))

@@ -4,20 +4,34 @@ _App desarrollada en react para el front-end y express para el back-end_
 
 ## Instrucciones para levantar el proyecto 🛠️
 
-_Carpeta front-react y back-express, tienen el front y back del Challenge. Dicho esto, aplicar los siguientes pasos para levantar cada app_
-_Abril consola y ubicarse en path front-react o back-express, luego utilizar gestionador de paquetes de su preferencia (npm o yarn u otro) e instalar paquetes y luego levantar el app. (Repetir los mismos pasos para ambas app)_
+_Carpeta front-react y back-express, tienen el front y back del Challenge. Dicho esto, aplicar los siguientes pasos para levantar cada app._
+_Abrir consola y ubicarse en path front-react o back-express, luego utilizar gestionador de paquetes de su preferencia (npm o yarn) e instalar paquetes y luego levantar el app. (Repetir los mismos pasos para ambas app. Back-end levanta en el puerto 3000 y front-end levanta en puerto 3001)_
 
+_Para el FRONT-END_
 _Ejemplo Npm_
 
-> cd front-react
-> npm i #Intalador de paquetes
-> npm run start:local #Levanta app
+> cd front-react.
+> npm i #Intalador de paquetes.
+> npm run start #Levanta app en puerto 3001
 
 _Ejemplo Yarn_
 
-> cd front-react
-> yarn #Intalador de paquetes
-> yarn start:local #Levanta app
+> cd front-react.
+> yarn #Intalador de paquetes.
+> yarn start #Levanta app en puerto 3001
+
+_Para el BACK-END_
+_Ejemplo Npm_
+
+> cd back-express.
+> npm i #Intalador de paquetes.
+> npm run dev #Levanta app en puerto 3000
+
+_Ejemplo Yarn_
+
+> cd back-express.
+> yarn #Intalador de paquetes.
+> yarn start:dev #Levanta app en puerto 3000
 
 ## Construido con 🛠️
 
@@ -27,7 +41,7 @@ _Ejemplo Yarn_
 
 ## Base de datos 📚
 
-_La aplicación se implementó con Mock con objetos en duro como salida de datos. Estos son desplegados por app back-express_
+_La aplicación se implementó con mock con objetos estaticos como salida de datos. Estos son desplegados por app back-express_
 
 _Modulos_
 

@@ -1,18 +1,16 @@
-import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
-//Slices in Reducer
+import {configureStore, type ThunkAction, type Action} from '@reduxjs/toolkit';
+/* Slices in Reducer */
 import loadingSlice from 'redux/Reducer/Loading/LoadingSlice';
 import snackbarSlice from 'redux/Reducer/Snackbar/SnackbarSlice';
-import generalInfoSlice from 'redux/Reducer/GeneralInformation/GeneralInfoSlice'; //Informacion general
-import myshoppingSlice from 'redux/Reducer/MyShopping/MyShoppingSlice'; //Informacion general//Mis compras
-import purchaseDetailSlice from 'redux/Reducer/PurchaseDetail/PurchaseDetail'; //Informacion general//Detalle de compras
+import generalInfoSlice from 'redux/Reducer/GeneralInformation/GeneralInfoSlice';
+import myshoppingSlice from 'redux/Reducer/MyShopping/MyShoppingSlice';
 
 export const store = configureStore({
   reducer: {
     loading: loadingSlice,
     snackbar: snackbarSlice,
     generalInformation: generalInfoSlice,
-    myShopping: myshoppingSlice,
-    purchaseDetail: purchaseDetailSlice
+    myShopping: myshoppingSlice
   }
 });
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}

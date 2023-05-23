@@ -1,10 +1,7 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {type ChangeEvent, type MouseEvent, useState} from 'react';
-// import {type ChangeEvent, type MouseEvent, useEffect, useState} from 'react';
-// Hooks
-import {useAppDispatch} from 'hooks/Hooks';
-// import {useAppDispatch, useAppSelector} from 'hooks/Hooks';
-// Mui
+import React, {type ChangeEvent, type MouseEvent, useState, useEffect} from 'react';
+import {useAppDispatch, useAppSelector} from 'hooks/Hooks';
 import {
   Table,
   TableBody,
@@ -13,7 +10,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Avatar,
   Grid,
   Typography,
   TablePagination,
@@ -22,32 +18,36 @@ import {
   Box
 } from '@mui/material';
 import {useTheme} from '@mui/material/styles';
-// Mui-Icon
 import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import {formatNumberToMoney} from 'utils/FormatFn';
-// Rdux
-// import {getAllUsers, selectUsers} from 'redux/Reducer/User/UserSlice';
-// Interface
-import {type ILabelDisplayedRows, type ITablePaginationActionsProps} from 'interface/Interface';
-// Component
+import {getPurchases, selectMyShopping} from 'redux/Reducer/MyShopping/MyShoppingSlice';
+import {iniStatePurchaseDetailResponse} from 'redux/Constant/InitialState';
+import {type IPurchaseDetail, type IComponentTable, type ITablePaginationActionsProps} from 'interface/Interface';
 import PurchaseDetail from 'components/PurchaseDetail/PurchaseDetail';
-import shoppingList from 'mocks/compras.json';
-// Css
-import styles from './Shopping.module.css';
+import {formatNumberToMoney} from 'utils/FormatFn';
 import {transDateToDDMMYYYYY} from 'utils/DateFn';
+// import shoppingList from 'mocks/compras.json';
+import styles from './Shopping.module.css';
 
-function ShoppingTable(): JSX.Element {
+function ShoppingTable({elementUser}: IComponentTable): JSX.Element {
   const dispatch = useAppDispatch();
+  const {dataPurchase: PURCHASE} = useAppSelector(selectMyShopping);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  // const {listAllUser: USERS}: any = useAppSelector(selectUsers);
+  const [dataPurchase, setDataPurchase] = useState<IPurchaseDetail[]>([iniStatePurchaseDetailResponse]);
 
-  // useEffect(() => {
-  //   dispatch(getAllUsers());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (elementUser.idUser) {
+      const idUser: number = elementUser.idUser;
+      dispatch(getPurchases(idUser));
+    }
+  }, [elementUser]);
+
+  useEffect(() => {
+    PURCHASE?.data && setDataPurchase(PURCHASE.data);
+  }, [PURCHASE]);
 
   function TablePaginationActions(props: ITablePaginationActionsProps): JSX.Element {
     const theme = useTheme();
@@ -93,7 +93,7 @@ function ShoppingTable(): JSX.Element {
   }
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - shoppingList.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - dataPurchase.length) : 0;
 
   const handleChangePage = (_event: unknown, newPage: number): void => {
     setPage(newPage);
@@ -124,7 +124,7 @@ function ShoppingTable(): JSX.Element {
             </TableRow>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0 ? shoppingList.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : shoppingList).map(
+            {(rowsPerPage > 0 ? dataPurchase.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : dataPurchase).map(
               (row: any) => (
                 <TableRow key={row.purchase_id}>
                   <TableCell>
@@ -176,7 +176,7 @@ function ShoppingTable(): JSX.Element {
                 labelRowsPerPage={'Filas por página:'}
                 labelDisplayedRows={({from, to, count}) => `${from}-${to ?? 0} de ${count !== -1 ? count ?? 0 : `más que ${to}`}`}
                 colSpan={5}
-                count={shoppingList.length}
+                count={dataPurchase.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
