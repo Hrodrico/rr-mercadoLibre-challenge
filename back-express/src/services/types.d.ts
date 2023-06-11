@@ -19,3 +19,11 @@ export interface IPurchaseDetail {
   transaction_id: number;
   shipment_id: number;
 }
+
+export interface IGetUserResponse {
+  user_id: number;
+  name: string;
+  surname: string;
+  level: string;
+  profile_image: sting;
+}
