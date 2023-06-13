@@ -8,22 +8,12 @@ _Carpeta front-react y back-express, tienen el front y back del Challenge. Dicho
 _Abrir consola y ubicarse en path front-react o back-express, luego utilizar gestionador de paquetes de su preferencia (npm o yarn) e instalar paquetes y luego levantar el app. (Repetir los mismos pasos para ambas app. Back-end levanta en el puerto 3000 y front-end levanta en puerto 3001)_
 
 _Para FRONT-END_<br/>
-_Ej. Npm_
-> cd front-react.<br/>
-> npm i   ###Intalador de paquetes.<br/>
-> npm run start   ###Levanta app en puerto 3001.<br/>
-
 _Ej. Yarn_
 > cd front-react.<br/>
 > yarn  ###Intalador de paquetes.<br/>
 > yarn start  ###Levanta app en puerto 3001.<br/>
 
 _Para BACK-END_<br/>
-_Ej. Npm_
-> cd back-express.<br/>
-> npm i   ###Intalador de paquetes.<br/>
-> npm run dev   ###Levanta app en puerto 3000.<br/>
-
 _Ej. Yarn_
 > cd back-express.<br/>
 > yarn  ###Intalador de paquetes.<br/>
